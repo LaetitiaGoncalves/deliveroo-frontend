@@ -25,6 +25,7 @@ const App = () => {
     <span>En cours de chargement</span>
   ) : (
     <div className="App">
+      <img src="./images/logo-teal.svg" alt="" />
       <h1>{data.restaurant.name}</h1>
       <p>{data.restaurant.description}</p>
       <div>
