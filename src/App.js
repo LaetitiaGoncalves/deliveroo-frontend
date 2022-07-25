@@ -1,25 +1,64 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
-function App() {
-  return (
+const App = () => {
+  const [data, setData] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://laetitia-deliveroo-api.herokuapp.com/"
+        );
+        console.log(response.data);
+        setData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    fetchData();
+  }, []);
+  return isLoading ? (
+    <span>En cours de chargement</span>
+  ) : (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{data.restaurant.name}</h1>
+      <p>{data.restaurant.description}</p>
+      <div>
+        <div>
+          {data.categories.map((categorie, index) => {
+            return (
+              <div key={index}>
+                <h2>{categorie.name}</h2>
+                <div>
+                  {categorie.meals.map((title, index) => {
+                    return (
+                      <div key={index}>
+                        <h3>{title.title}</h3>
+                        <p>{title.description}</p>
+                        <p>{title.price}</p>
+                        <p>{title.popular ? <span>Populaire</span> : ""}</p>
+                        <p>
+                          {title.picture ? (
+                            <img src={title.picture} alt="" />
+                          ) : (
+                            ""
+                          )}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
