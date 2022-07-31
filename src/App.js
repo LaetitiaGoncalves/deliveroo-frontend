@@ -101,30 +101,64 @@ const App = () => {
                             }}
                           >
                             <div className="card-item">
-                              <div className="card-text">
-                                <h3>{meal.title}</h3>
-                                <p>{meal.description}</p>
-                                <span className="price">
-                                  {meal.price.replace(".", ",")}€
-                                </span>
-                                <span className="popular">
-                                  {meal.popular ? (
-                                    <span className="star">
-                                      <FontAwesomeIcon icon="fa-solid fa-star" />
-                                      Populaire
+                              {meal.picture ? (
+                                <div className="card-with-picture">
+                                  <div className="card-text">
+                                    <h3>{meal.title}</h3>
+
+                                    {meal.description ? (
+                                      <p>{meal.description}</p>
+                                    ) : (
+                                      ""
+                                    )}
+
+                                    <span className="price">
+                                      {meal.price.replace(".", ",")}€
                                     </span>
-                                  ) : (
-                                    ""
-                                  )}
-                                </span>
-                              </div>
-                              <div className="card-picture">
-                                {meal.picture ? (
-                                  <img src={meal.picture} alt="" />
-                                ) : (
-                                  ""
-                                )}
-                              </div>
+                                    <span className="popular">
+                                      {meal.popular ? (
+                                        <span className="star">
+                                          <FontAwesomeIcon icon="fa-solid fa-star" />
+                                          Populaire
+                                        </span>
+                                      ) : (
+                                        ""
+                                      )}
+                                    </span>
+                                  </div>
+                                  <div className="card-picture">
+                                    {meal.picture ? (
+                                      <img src={meal.picture} alt="" />
+                                    ) : (
+                                      ""
+                                    )}
+                                  </div>
+                                </div>
+                              ) : (
+                                <div>
+                                  <div className="card-text">
+                                    <h3>{meal.title}</h3>
+                                    {meal.description ? (
+                                      <p>{meal.description}</p>
+                                    ) : (
+                                      ""
+                                    )}
+                                    <span className="price">
+                                      {meal.price.replace(".", ",")}€
+                                    </span>
+                                    <span className="popular">
+                                      {meal.popular ? (
+                                        <span className="star">
+                                          <FontAwesomeIcon icon="fa-solid fa-star" />
+                                          Populaire
+                                        </span>
+                                      ) : (
+                                        ""
+                                      )}
+                                    </span>
+                                  </div>
+                                </div>
+                              )}
                             </div>
                           </div>
                         );
