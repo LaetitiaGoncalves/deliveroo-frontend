@@ -68,6 +68,7 @@ h2 {
 
 body .main-content {
     background-color: #f3f5f5;
+    padding: 0px 0px 30px 0px;
     
 }
 
@@ -171,13 +172,14 @@ body .main-content {
     text-decoration: underline;
 }
 
-.panier {
+.basket {
     width: 350px;
     position: sticky;
     top: 0;
 }
 
-.panier > div {
+.basket > div {
+    
     box-shadow: 0 22px 24px 0 rgb(46 51 51 / 7%);
     background: #fff;
     border-radius: 4px;
@@ -185,11 +187,90 @@ body .main-content {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    margin: 30px 0;
+    margin: 30px 10px;
 }
 
-.panier button {
-    display: block;
+.top-container {
+    display: flex;
+    justify-content: center;
+}
+
+
+.basket p {
+    color: #868a8a;
+    text-align: left;
+
+}
+
+.counter-basket  {
+    display: flex;
+    align-items: center;
+    height: 55px;
+    padding: 1rem 0;
+}
+.counter  {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.counter p {
+    padding: 0 5px;
+}
+
+.counter button {
+    background-color: white;
+    border: 1px solid #00cdbd;
+    border-radius: 100px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.basket-items {
+  
+    margin: 0 10px;
+}
+
+.basket-title {
+    flex: 1 1;
+}
+
+.basket-price {
+    width: 85px;
+    text-align: right;
+}
+
+
+
+.sub-total {
+    padding: 10px 0px;
+    border-top: 1px solid #a8a8a8;
+    border-bottom: 1px solid #a8a8a8;
+}
+
+.basket-items .basket-empty {
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.disabled {
+    width: 100%;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 1rem;
+    cursor: not-allowed;
+    background: #bac3c3;
+    color: #8b9a9b;
+    border: none;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.allowed {
+    width: 100%;
     margin: 10px;
     border-radius: 5px;
     padding: 1rem;
@@ -200,8 +281,10 @@ body .main-content {
     font-size: 1rem;
 }
 
-.panier p {
-    color: #868a8a;
-    text-align: center;
-    padding: 3rem 0;
+.sub-total p {
+    display: flex;
+}
+
+.total h3 {
+    display: flex;
 }
