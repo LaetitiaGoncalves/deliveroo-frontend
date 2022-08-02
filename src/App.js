@@ -16,6 +16,8 @@ const App = () => {
   const [data, setData] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [seeBasket, setSeeBasket] = useState(false);
+
   const [basket, setBasket] = useState([]);
 
   const getTotal = () => {
@@ -178,6 +180,7 @@ const App = () => {
                   <button className="allowed">Valider mon panier</button>
                 )}
               </div>
+
               <div className="bottom-container">
                 <div className="empty-basket">
                   <div className="basket-items">
@@ -261,6 +264,121 @@ const App = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="basket-responsive">
+            <div className="basket-item">
+              <div className="top-container">
+                {basket.length === 0 ? (
+                  <button className="disabled">Voir mon panier</button>
+                ) : (
+                  <button
+                    className="allowed"
+                    onClick={() => {
+                      setSeeBasket(true);
+                    }}
+                  >
+                    Valider mon panier
+                  </button>
+                )}
+              </div>
+              {seeBasket === true ? (
+                <div className="bottom-container">
+                  <div
+                    className="close-basket"
+                    onClick={() => {
+                      setSeeBasket(false);
+                    }}
+                  >
+                    X
+                  </div>
+                  <div className="empty-basket">
+                    <div className="basket-items">
+                      <div>
+                        {basket.map((basketItem, index) => {
+                          return (
+                            <div className="counter-basket" key={index}>
+                              <div className="counter">
+                                <button
+                                  onClick={() => {
+                                    const newBasket = [...basket];
+                                    if (basket[index].quantity === 1) {
+                                      newBasket.splice(index, 1);
+                                    } else {
+                                      newBasket[index].quantity--;
+                                    }
+                                    setBasket(newBasket);
+                                  }}
+                                >
+                                  <FontAwesomeIcon
+                                    icon="fa-solid fa-minus"
+                                    style={{ color: "#00cdbd" }}
+                                  />
+                                </button>
+                                <p>{basketItem.quantity}</p>
+                                <button
+                                  onClick={() => {
+                                    const newBasket = [...basket];
+                                    newBasket[index].quantity++;
+                                    setBasket(newBasket);
+                                  }}
+                                >
+                                  <FontAwesomeIcon
+                                    icon="fa-solid fa-plus"
+                                    style={{ color: "#00cdbd" }}
+                                  />
+                                </button>
+                              </div>
+
+                              <span className="basket-title">
+                                {basketItem.title}
+                              </span>
+                              <span className="basket-price">
+                                {basketItem.price.replace(".", ",")} €
+                              </span>
+                            </div>
+                          );
+                        })}
+                        {basket.length === 0 ? (
+                          ""
+                        ) : (
+                          <>
+                            <div className="sub-total">
+                              <p>
+                                <span className="basket-title">
+                                  Sous total :
+                                </span>
+                                <span className="basket-price">
+                                  {getTotal().replace(".", ",")} €
+                                </span>
+                              </p>
+                              <p>
+                                <span className="basket-title">
+                                  Frais de livraison :
+                                </span>
+                                <span className="basket-price">2,50 €</span>
+                              </p>
+                            </div>
+                            <div className="total">
+                              <h3>
+                                <span className="basket-title">Total :</span>
+                                <span className="basket-price">
+                                  {(Number(getTotal()) + 2.5)
+                                    .toFixed(2)
+                                    .replace(".", ",")}{" "}
+                                  €
+                                </span>
+                              </h3>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>
